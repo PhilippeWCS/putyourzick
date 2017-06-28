@@ -9,10 +9,6 @@ security:
     providers:
         in_memory:
             memory: ~
-        our_db_provider:
-            entity:
-                class: WCSputyourzickBundle:User
-                property: email
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -22,17 +18,7 @@ security:
 
         main:
             anonymous: ~
-            form_login:
-                login_path: wcs_putyourzick_login
-                check_path: wcs_putyourzick_login
 
-            logout:
-                path: /user/logout
-                target: /
-
-    access_control:
-        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/user, roles: ROLE_USER }
             # activate different ways to authenticate
 
             # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
