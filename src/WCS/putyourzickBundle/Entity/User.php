@@ -16,7 +16,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @UniqueEntity(fields="pseudo", message="Pseudo already taken")
  *
  */
-class User implements UserInterface, \Serializable
+class User
 {
     /**
      * @var int
@@ -32,6 +32,7 @@ class User implements UserInterface, \Serializable
      *
      * @ORM\Column(name="pseudo", type="string", length=255, unique=true)
      * @Assert\NotBlank()
+     * @Assert\Type("string")
      */
     private $pseudo;
 
@@ -39,6 +40,7 @@ class User implements UserInterface, \Serializable
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=255, nullable=true)
+     * @Assert\Type("string")
      */
     private $nom;
 
@@ -46,6 +48,7 @@ class User implements UserInterface, \Serializable
      * @var string
      *
      * @ORM\Column(name="prenom", type="string", length=255, nullable=true)
+     * @Assert\Type("string")
      */
     private $prenom;
 
@@ -66,12 +69,6 @@ class User implements UserInterface, \Serializable
     private $motDePasse;
 
     /**
-     * @Assert\NotBlank()
-     * @Assert\Length(max=4096)
-     */
-    private $plainPassword;
-
-    /**
      * @ORM\OneToMany(targetEntity="Playlist", mappedBy="user")
      */
     private $playlist;
@@ -80,37 +77,6 @@ class User implements UserInterface, \Serializable
      * @ORM\OneToMany(targetEntity="Invite", mappedBy="user")
      */
     private $invite;
-
-    public function getSalt()
-    {
-        // you *may* need a real salt depending on your encoder
-        // see section on salt below
-        return null;
-    }
-
-    public function eraseCredentials()
-    {
-    }
-
-    public function getUsername()
-    {
-        return $this->pseudo;
-    }
-
-    public function getPassword()
-    {
-        return $this->motDePasse;
-    }
-
-    public function getPlainPassword()
-    {
-        return $this->plainPassword;
-    }
-
-    public function setPlainPassword($password)
-    {
-        $this->plainPassword = $password;
-    }
 
     /**
      * @ORM\OneToMany(targetEntity="LikePlaylist", mappedBy="user")
@@ -339,31 +305,6 @@ class User implements UserInterface, \Serializable
         return $this->invite;
     }
 
-    public function getRoles()
-    {
-        // TODO: Implement getRoles() method.
-        return array('ROLE_USER');
-    }
-
-    public function serialize()
-    {
-        // TODO: Implement serialize() method.
-        return $this->serialize(array(
-            $this->id,
-            $this->pseudo,
-            $this->motDePasse
-        ));
-    }
-
-    public function unserialize($serialized)
-    {
-        // TODO: Implement unserialize() method.
-        list(
-            $this->id,
-            $this->pseudo,
-            $this->motDePasse
-            ) = $this->unserialize($serialized);
-    }
     /**
      * Add likePlaylist
      *

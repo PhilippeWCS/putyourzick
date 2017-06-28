@@ -14,10 +14,7 @@ class UserController extends Controller
 {
     public function inscriptionAction(Request $request)
     {
-        $user = new User();
-        $form = $this->createForm(RegistrationType::class, $user);
 
-        $form->handleRequest($request);
         if ($request->isXmlHttpRequest() && $form->isValid()) {
 
             // 3) Encode the password (you could also do this via Doctrine listener)
