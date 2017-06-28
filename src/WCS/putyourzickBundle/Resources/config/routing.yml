@@ -13,3 +13,24 @@ wcs_putyourzick_login:
 wcs_putyourzick_logout:
     path: /user/logout
 
+wcs_sputyourzick_homepage:
+    path:     /
+    defaults: { _controller: WCSputyourzickBundle:Default:index }
+
+wcs_sputyourzick_get_playlist:
+    path:     /getplaylist
+    defaults: { _controller: WCSputyourzickBundle:Playlist:get }
+
+wcs_putyourzick_add_playlist:
+    path:     /user/addplaylist
+    defaults: { _controller: WCSputyourzickBundle:Playlist:add }
+
+wcs_sputyourzick_edit_playlist:
+    path:     /user/editplaylist/{id}
+    defaults: { _controller: WCSputyourzickBundle:Playlist:edit }
+
+wcs_sputyourzick_delete_playlist:
+    path:     /user/deleteplaylist/{id}
+    defaults: { _controller: WCSputyourzickBundle:Playlist:delete }
+
+

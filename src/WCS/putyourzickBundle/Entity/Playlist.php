@@ -3,6 +3,7 @@
 namespace WCS\putyourzickBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Playlist
@@ -25,6 +26,8 @@ class Playlist
      * @var string
      *
      * @ORM\Column(name="titre", type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Type("string")
      */
     private $titre;
 
@@ -32,15 +35,10 @@ class Playlist
      * @var string
      *
      * @ORM\Column(name="theme", type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Type("string")
      */
     private $theme;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="proprietaire", type="string", length=255)
-     */
-    private $proprietaire;
 
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="playlist")
