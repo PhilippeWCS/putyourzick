@@ -5,3 +5,11 @@ wcs_putyourzick_homepage:
 wcs_putyourzick_inscription:
     path:    /inscription
     defaults: { _controller: WCSputyourzickBundle:inscription}
+
+wcs_putyourzick_login:
+    path:    /login
+    defaults: { _controller: WCSputyourzickBundle:login}
+
+wcs_putyourzick_logout:
+    path: /user/logout
+
