@@ -1,3 +1,7 @@
-wc_sputyourzick_homepage:
+wcs_putyourzick_homepage:
     path:     /
     defaults: { _controller: WCSputyourzickBundle:Default:index }
+
+wcs_putyourzick_inscription:
+    path:    /inscription
+    defaults: { _controller: WCSputyourzickBundle:inscription}
