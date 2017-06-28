@@ -344,7 +344,6 @@ class User implements UserInterface, \Serializable
         return $this->invite;
     }
 
-<<<<<<< HEAD
     public function getRoles()
     {
         // TODO: Implement getRoles() method.
@@ -369,7 +368,7 @@ class User implements UserInterface, \Serializable
             $this->pseudo,
             $this->motDePasse
             ) = $this->unserialize($serialized);
-=======
+    }
     /**
      * Add likePlaylist
      *
@@ -504,6 +503,5 @@ class User implements UserInterface, \Serializable
     public function getCommentaire()
     {
         return $this->commentaire;
->>>>>>> master
     }
 }

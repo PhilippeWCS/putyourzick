@@ -95,4 +95,28 @@ class Commentaire
     {
         return $this->user;
     }
+
+    /**
+     * Set media
+     *
+     * @param \WCS\putyourzickBundle\Entity\media $media
+     *
+     * @return Commentaire
+     */
+    public function setMedia(\WCS\putyourzickBundle\Entity\media $media = null)
+    {
+        $this->media = $media;
+
+        return $this;
+    }
+
+    /**
+     * Get media
+     *
+     * @return \WCS\putyourzickBundle\Entity\media
+     */
+    public function getMedia()
+    {
+        return $this->media;
+    }
 }

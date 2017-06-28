@@ -2,9 +2,11 @@
 
 namespace WCS\putyourzickBundle\Controller;
 
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use WCS\putyourzickBundle\Entity\User;
 use WCS\putyourzickBundle\Form\RegistrationType;
 
@@ -16,11 +18,10 @@ class UserController extends Controller
         $form = $this->createForm(RegistrationType::class, $user);
 
         $form->handleRequest($request);
-        if ($request->isXmlHttpRequest() && $form->isValid()) {
+        if ($request->isXmlHttpRequest()) {
 
             // 3) Encode the password (you could also do this via Doctrine listener)
-            $password = $this->get('security.password_encoder')
-                ->encodePassword($user, $user->getMotDePasse());
+            $password = $this->get('security.password_encoder')->encodePassword($user, $user->getPlainPassword());
             $user->setMotDePasse($password);
 
             // 4) save the User!
@@ -28,16 +29,16 @@ class UserController extends Controller
             $em->persist($user);
             $em->flush();
 
-            // ... do any other work - like sending them an email, etc
-            // maybe set a "flash" success message for the user
-
             return new JsonResponse('success');
+
         }
 
-        return new JsonResponse($form);
+        return $this->render('WCSputyourzickBundle:User:inscription.html.twig', array(
+            'form' => $form->createView()
+        ));
     }
 
-    public function loginAction
+    public function loginAction()
     {
 
     }
