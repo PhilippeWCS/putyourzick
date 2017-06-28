@@ -18,7 +18,7 @@ class UserController extends Controller
         $form = $this->createForm(RegistrationType::class, $user);
 
         $form->handleRequest($request);
-        if ($request->isXmlHttpRequest()) {
+        if ($request->isXmlHttpRequest() && $form->isValid()) {
 
             // 3) Encode the password (you could also do this via Doctrine listener)
             $password = $this->get('security.password_encoder')->encodePassword($user, $user->getPlainPassword());
@@ -33,9 +33,7 @@ class UserController extends Controller
 
         }
 
-        return $this->render('WCSputyourzickBundle:User:inscription.html.twig', array(
-            'form' => $form->createView()
-        ));
+        return new JsonResponse('error');
     }
 
     public function loginAction()
