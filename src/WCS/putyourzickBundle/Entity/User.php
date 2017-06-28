@@ -3,14 +3,20 @@
 namespace WCS\putyourzickBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * User
  *
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="WCS\putyourzickBundle\Repository\UserRepository")
+ * @UniqueEntity(fields="email", message="Email already taken")
+ * @UniqueEntity(fields="pseudo", message="Pseudo already taken")
+ *
  */
-class User
+class User implements UserInterface, \Serializable
 {
     /**
      * @var int
@@ -24,44 +30,46 @@ class User
     /**
      * @var string
      *
-     * @ORM\Column(name="pseudo", type="string", length=255)
+     * @ORM\Column(name="pseudo", type="string", length=255, unique=true)
+     * @Assert\NotBlank()
      */
     private $pseudo;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=255)
+     * @ORM\Column(name="nom", type="string", length=255, nullable=true)
      */
     private $nom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="prenom", type="string", length=255)
+     * @ORM\Column(name="prenom", type="string", length=255, nullable=true)
      */
     private $prenom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=255)
+     * @ORM\Column(name="email", type="string", length=255, unique=true)
+     * @Assert\NotBlank()
+     * @Assert\Email()
      */
     private $email;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="motDePasse", type="string", length=255)
+     * @ORM\Column(name="motDePasse", type="string", length=64)
      */
     private $motDePasse;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="date", type="datetime")
+     * @Assert\NotBlank()
+     * @Assert\Length(max=4096)
      */
-    private $date;
+    private $plainPassword;
 
     /**
      * @ORM\OneToMany(targetEntity="Playlist", mappedBy="user")
@@ -72,6 +80,37 @@ class User
      * @ORM\OneToMany(targetEntity="Invite", mappedBy="user")
      */
     private $invite;
+
+    public function getSalt()
+    {
+        // you *may* need a real salt depending on your encoder
+        // see section on salt below
+        return null;
+    }
+
+    public function eraseCredentials()
+    {
+    }
+
+    public function getUsername()
+    {
+        return $this->pseudo;
+    }
+
+    public function getPassword()
+    {
+        return $this->motDePasse;
+    }
+
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    public function setPlainPassword($password)
+    {
+        $this->plainPassword = $password;
+    }
 
     /**
      * @ORM\OneToMany(targetEntity="LikePlaylist", mappedBy="user")
@@ -223,29 +262,7 @@ class User
         return $this->motDePasse;
     }
 
-    /**
-     * Set date
-     *
-     * @param \DateTime $date
-     *
-     * @return User
-     */
-    public function setDate($date)
-    {
-        $this->date = $date;
 
-        return $this;
-    }
-
-    /**
-     * Get date
-     *
-     * @return \DateTime
-     */
-    public function getDate()
-    {
-        return $this->date;
-    }
     /**
      * Constructor
      */
@@ -322,6 +339,31 @@ class User
         return $this->invite;
     }
 
+    public function getRoles()
+    {
+        // TODO: Implement getRoles() method.
+        return array('ROLE_USER');
+    }
+
+    public function serialize()
+    {
+        // TODO: Implement serialize() method.
+        return $this->serialize(array(
+            $this->id,
+            $this->pseudo,
+            $this->motDePasse
+        ));
+    }
+
+    public function unserialize($serialized)
+    {
+        // TODO: Implement unserialize() method.
+        list(
+            $this->id,
+            $this->pseudo,
+            $this->motDePasse
+            ) = $this->unserialize($serialized);
+    }
     /**
      * Add likePlaylist
      *

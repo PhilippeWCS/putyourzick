@@ -3,6 +3,7 @@
 namespace WCS\putyourzickBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * User
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="WCS\putyourzickBundle\Repository\UserRepository")
  */
-class User
+class User implements UserInterface, \Serializable
 {
     /**
      * @var int
@@ -24,7 +25,7 @@ class User
     /**
      * @var string
      *
-     * @ORM\Column(name="pseudo", type="string", length=255)
+     * @ORM\Column(name="pseudo", type="string", length=255, )
      */
     private $pseudo;
 
@@ -72,6 +73,27 @@ class User
      * @ORM\OneToMany(targetEntity="Invite", mappedBy="user")
      */
     private $invite;
+
+    public function getSalt()
+    {
+        // you *may* need a real salt depending on your encoder
+        // see section on salt below
+        return null;
+    }
+
+    public function eraseCredentials()
+    {
+    }
+
+    public function getUsername()
+    {
+        return $this->pseudo;
+    }
+
+    public function getPassword()
+    {
+        return $this->motDePasse;
+    }
 
     /**
      * @ORM\OneToMany(targetEntity="LikePlaylist", mappedBy="user")
@@ -322,6 +344,31 @@ class User
         return $this->invite;
     }
 
+    public function getRoles()
+    {
+        // TODO: Implement getRoles() method.
+        return array('ROLE_USER');
+    }
+
+    public function serialize()
+    {
+        // TODO: Implement serialize() method.
+        return $this->serialize(array(
+            $this->id,
+            $this->pseudo,
+            $this->motDePasse
+        ));
+    }
+
+    public function unserialize($serialized)
+    {
+        // TODO: Implement unserialize() method.
+        list(
+            $this->id,
+            $this->pseudo,
+            $this->motDePasse
+            ) = $this->unserialize($serialized);
+    }
     /**
      * Add likePlaylist
      *
