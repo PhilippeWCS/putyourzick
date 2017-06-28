@@ -42,7 +42,7 @@ class UserController extends Controller
             }
         }
 
-        return new JsonResponse('Erreur de requête', 400);
+        return new JsonResponse('Erreur de requete', 400);
     }
 
     public function loginAction()
