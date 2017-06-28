@@ -1,0 +1,5 @@
+wc_sputyourzick:
+    resource: "@WCSputyourzickBundle/Resources/config/routing.yml"
+    prefix:   /
+
+
