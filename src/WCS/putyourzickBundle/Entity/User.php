@@ -13,11 +13,26 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="WCS\putyourzickBundle\Repository\UserRepository")
  * @UniqueEntity(fields="email", message="Email already taken")
- * @UniqueEntity(fields="pseudo", message="Pseudo already taken")
+ * @UniqueEntity(fields="username", message="Username already taken")
  *
  */
-class User
+class User implements UserInterface
 {
+    public function getSalt()
+    {
+        return '';
+    }
+    public function eraseCredentials()
+    {
+        // The bcrypt algorithm doesn't require a separate salt.
+        // You *may* need a real salt if you choose a different encoder.
+        return null;
+    }
+    public function getRoles()
+    {
+        return array('ROLE_ADMIN');
+    }
+
     /**
      * @var int
      *
@@ -30,11 +45,11 @@ class User
     /**
      * @var string
      *
-     * @ORM\Column(name="pseudo", type="string", length=255, unique=true)
+     * @ORM\Column(name="username", type="string", length=255, unique=true)
      * @Assert\NotBlank()
      * @Assert\Type("string")
      */
-    private $pseudo;
+    private $username;
 
     /**
      * @var string
@@ -64,9 +79,15 @@ class User
     /**
      * @var string
      *
-     * @ORM\Column(name="motDePasse", type="string", length=64)
+     * @ORM\Column(name="password", type="string", length=64)
      */
-    private $motDePasse;
+    private $password;
+
+    /**
+     * @Assert\NotBlank()
+     * @Assert\Length(max=4096)
+     */
+    private $plainPassword;
 
     /**
      * @ORM\OneToMany(targetEntity="Playlist", mappedBy="user")
@@ -115,9 +136,9 @@ class User
      *
      * @return User
      */
-    public function setPseudo($pseudo)
+    public function setUsername($username)
     {
-        $this->pseudo = $pseudo;
+        $this->username = $username;
 
         return $this;
     }
@@ -127,9 +148,9 @@ class User
      *
      * @return string
      */
-    public function getPseudo()
+    public function getUsername()
     {
-        return $this->pseudo;
+        return $this->username;
     }
 
     /**
@@ -211,9 +232,9 @@ class User
      *
      * @return User
      */
-    public function setMotDePasse($motDePasse)
+    public function setPassword($password)
     {
-        $this->motDePasse = $motDePasse;
+        $this->password = $password;
 
         return $this;
     }
@@ -223,11 +244,20 @@ class User
      *
      * @return string
      */
-    public function getMotDePasse()
+    public function getPassword()
     {
-        return $this->motDePasse;
+        return $this->password;
     }
 
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    public function setPlainPassword($password)
+    {
+        $this->plainPassword = $password;
+    }
 
     /**
      * Constructor
