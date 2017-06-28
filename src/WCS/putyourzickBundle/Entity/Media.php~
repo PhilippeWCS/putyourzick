@@ -202,4 +202,38 @@ class Media
     {
         return $this->likeMedia;
     }
+
+    /**
+     * Add commentaire
+     *
+     * @param \WCS\putyourzickBundle\Entity\Commentaire $commentaire
+     *
+     * @return Media
+     */
+    public function addCommentaire(\WCS\putyourzickBundle\Entity\Commentaire $commentaire)
+    {
+        $this->commentaire[] = $commentaire;
+
+        return $this;
+    }
+
+    /**
+     * Remove commentaire
+     *
+     * @param \WCS\putyourzickBundle\Entity\Commentaire $commentaire
+     */
+    public function removeCommentaire(\WCS\putyourzickBundle\Entity\Commentaire $commentaire)
+    {
+        $this->commentaire->removeElement($commentaire);
+    }
+
+    /**
+     * Get commentaire
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCommentaire()
+    {
+        return $this->commentaire;
+    }
 }
