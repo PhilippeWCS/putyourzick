@@ -2,7 +2,6 @@
 
 namespace WCS\putyourzickBundle\Controller;
 
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,25 +14,35 @@ class UserController extends Controller
     public function inscriptionAction(Request $request)
     {
         $user = new User();
-        $form = $this->createForm(RegistrationType::class, $user);
 
-        $form->handleRequest($request);
-        if ($request->isXmlHttpRequest() && $form->isValid()) {
+        $validator = $this->get('validator');
+        $errors = $validator->validate($user);
 
-            // 3) Encode the password (you could also do this via Doctrine listener)
-            $password = $this->get('security.password_encoder')->encodePassword($user, $user->getPlainPassword());
-            $user->setMotDePasse($password);
+        if ($request->isXmlHttpRequest()) {
+            if (count($errors) > 0) {
+                $errorsString = (string) $errors;
 
-            // 4) save the User!
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
-            $em->flush();
+                return new JsonResponse($errorsString);
+            }
+            else{
+                $plainpassword = $request->request->get('password');
+                $password = $this->get('security.password_encoder')->encodePassword($plainpassword);
+                $email = $request->request->get('email');
+                $pseudo = $request->request->get('pseudo');
 
-            return new JsonResponse('success');
+                $user->setMotDePasse($password);
+                $user->setEmail($email);
+                $user->setPseudo($pseudo);
 
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($user);
+                $em->flush();
+
+                return new JsonResponse('success');
+            }
         }
 
-        return new JsonResponse('error');
+        return new JsonResponse('Erreur de requete', 400);
     }
 
     public function loginAction()
