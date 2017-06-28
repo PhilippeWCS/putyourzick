@@ -27,7 +27,16 @@ class LikePlaylist
      * @ORM\Column(name="nombre", type="integer")
      */
     private $nombre;
-    
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Playlist", inversedBy="likePlaylist")
+     */
+    private $playlist;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="likePlaylist")
+     */
+    private $user;
 
     /**
      * Get id
@@ -126,5 +135,43 @@ class LikePlaylist
     public function getPlaylist()
     {
         return $this->playlist;
+    }
+
+    /**
+     * Set playlist
+     *
+     * @param \WCS\putyourzickBundle\Entity\Playlist $playlist
+     *
+     * @return LikePlaylist
+     */
+    public function setPlaylist(\WCS\putyourzickBundle\Entity\Playlist $playlist = null)
+    {
+        $this->playlist = $playlist;
+
+        return $this;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \WCS\putyourzickBundle\Entity\User $user
+     *
+     * @return LikePlaylist
+     */
+    public function setUser(\WCS\putyourzickBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \WCS\putyourzickBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

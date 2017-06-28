@@ -50,8 +50,17 @@ class Playlist
     /**
      * @ORM\OneToMany(targetEntity="Invite", mappedBy="playlist")
      */
-    private $playlist;
+    private $invite;
 
+    /**
+     * @ORM\OneToMany(targetEntity="LikePlaylist", mappedBy="playlist")
+     */
+    private $likePlaylist;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Media", mappedBy="playlist")
+     */
+    private $media;
 
     /**
      * Get id
@@ -256,5 +265,97 @@ class Playlist
     public function getLikeplaylist()
     {
         return $this->likeplaylist;
+    }
+
+    /**
+     * Add likeplaylist
+     *
+     * @param \WCS\putyourzickBundle\Entity\LikePlaylist $likeplaylist
+     *
+     * @return Playlist
+     */
+    public function addLikeplaylist(\WCS\putyourzickBundle\Entity\LikePlaylist $likeplaylist)
+    {
+        $this->likeplaylist[] = $likeplaylist;
+
+        return $this;
+    }
+
+    /**
+     * Remove likeplaylist
+     *
+     * @param \WCS\putyourzickBundle\Entity\LikePlaylist $likeplaylist
+     */
+    public function removeLikeplaylist(\WCS\putyourzickBundle\Entity\LikePlaylist $likeplaylist)
+    {
+        $this->likeplaylist->removeElement($likeplaylist);
+    }
+
+    /**
+     * Add invite
+     *
+     * @param \WCS\putyourzickBundle\Entity\Invite $invite
+     *
+     * @return Playlist
+     */
+    public function addInvite(\WCS\putyourzickBundle\Entity\Invite $invite)
+    {
+        $this->invite[] = $invite;
+
+        return $this;
+    }
+
+    /**
+     * Remove invite
+     *
+     * @param \WCS\putyourzickBundle\Entity\Invite $invite
+     */
+    public function removeInvite(\WCS\putyourzickBundle\Entity\Invite $invite)
+    {
+        $this->invite->removeElement($invite);
+    }
+
+    /**
+     * Get invite
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getInvite()
+    {
+        return $this->invite;
+    }
+
+    /**
+     * Add medium
+     *
+     * @param \WCS\putyourzickBundle\Entity\Media $medium
+     *
+     * @return Playlist
+     */
+    public function addMedia(\WCS\putyourzickBundle\Entity\Media $medium)
+    {
+        $this->media[] = $medium;
+
+        return $this;
+    }
+
+    /**
+     * Remove medium
+     *
+     * @param \WCS\putyourzickBundle\Entity\Media $medium
+     */
+    public function removeMedia(\WCS\putyourzickBundle\Entity\Media $medium)
+    {
+        $this->media->removeElement($medium);
+    }
+
+    /**
+     * Get media
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMedia()
+    {
+        return $this->media;
     }
 }
