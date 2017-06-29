@@ -18,8 +18,7 @@ class MediaController extends Controller
     public function getAction()
     {
         $encoders = array(new XmlEncoder(), new JsonEncoder());
-        $normalizer = new ObjectNormalizer();
-        $normalizer->setCircularReferenceLimit(1);
+        $normalizer = new ObjectNormalizer(); $normalizer->setCircularReferenceLimit(1);
         $normalizer->setCircularReferenceHandler(function ($object) {
             return $object->getId(); });
         $normalizers = array($normalizer);
@@ -38,20 +37,27 @@ class MediaController extends Controller
     public function addAction(Request $request)
     {
         $media = new Media();
-        $form = $this->createForm(MediaType::class, $media);
-        $form->handleRequest($request);
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+        $datas = json_decode($request->getContent(), true);
+
+        $user = $this->getDoctrine() ->getRepository('WCSputyourzickBundle:User')
+            ->findOneBy(array('id' => intval($datas['user'])));
+        $playlist = $this->getDoctrine()->getRepository('WCSputyourzickBundle:Playlist')
+            ->findOneBy(array('id' => 1));
+
+        $url = $datas['url'];
+        $media -> setUrl($url);
+        $titre = $datas['titre'];
+        $media -> setTitre($titre);
+        $media -> setUser($user);
+        $media -> setPlaylist($playlist);
+
+       $em = $this -> getDoctrine() ->getManager();
             $em->persist($media);
-            $em->flush();
 
-            $this->addFlash('success', 'Une musique a bien été ajoutée !');
+      /*  $em->flush(); */
 
-            return new JsonResponse('success');
-
-        }
-        return new JsonResponse('error');
+       return new Response($datas['user'].','.$datas['titre'].$datas['url'].','.$datas['playlist']);
     }
 
     public function editAction(Request $request, Media $media)

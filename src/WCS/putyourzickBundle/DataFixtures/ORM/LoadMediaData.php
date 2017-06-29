@@ -28,7 +28,7 @@ class LoadMediaData implements FixtureInterface, OrderedFixtureInterface
         $media->setPlaylist($playlist);
         $media->setTitre("Flo the kid - I see you smiling");
         $media->setDate(new \DateTime());
-        $media->setUrl("https://www.youtube.com/watch?v=mVofbmjXNjs");
+        $media->setUrl("mVofbmjXNjs");
         $manager->getClassMetaData(get_class($media))->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
         $manager->persist($media);
         $manager->flush();
@@ -38,7 +38,7 @@ class LoadMediaData implements FixtureInterface, OrderedFixtureInterface
         $media->setPlaylist($playlist);
         $media->setTitre("Michael Christmas - Y all Trippin");
         $media->setDate(new \DateTime());
-        $media->setUrl("https://www.youtube.com/watch?v=ElHLgaXIZgg");
+        $media->setUrl("ElHLgaXIZgg");
         $manager->getClassMetaData(get_class($media))->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
         $manager->persist($media);
         $manager->flush();
@@ -48,7 +48,7 @@ class LoadMediaData implements FixtureInterface, OrderedFixtureInterface
         $media->setPlaylist($playlist);
         $media->setTitre("coin-coin R Wan");
         $media->setDate(new \DateTime());
-        $media->setUrl("https://youtu.be/VbobOmQOyBI");
+        $media->setUrl("VbobOmQOyBI");
         $manager->getClassMetaData(get_class($media))->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
         $manager->persist($media);
         $manager->flush();
@@ -62,7 +62,7 @@ class LoadMediaData implements FixtureInterface, OrderedFixtureInterface
         $media->setPlaylist($playlist);
         $media->setTitre("54-46 Was My Number - Toots and The Maytals");
         $media->setDate(new \DateTime());
-        $media->setUrl("https://www.youtube.com/watch?v=UhH1Lxv-8sA");
+        $media->setUrl("UhH1Lxv-8sA");
         $manager->getClassMetaData(get_class($media))->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
         $manager->persist($media);
         $manager->flush();
@@ -72,7 +72,7 @@ class LoadMediaData implements FixtureInterface, OrderedFixtureInterface
         $media->setPlaylist($playlist);
         $media->setTitre("Easy Star All-Stars - Time");
         $media->setDate(new \DateTime());
-        $media->setUrl("https://youtu.be/Z6mzAGRY7uo");
+        $media->setUrl("Z6mzAGRY7uo");
         $manager->getClassMetaData(get_class($media))->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
         $manager->persist($media);
         $manager->flush();
@@ -82,7 +82,7 @@ class LoadMediaData implements FixtureInterface, OrderedFixtureInterface
         $media->setPlaylist($playlist);
         $media->setTitre("99 Posse feat. Mama Marjas - Combat Reggae");
         $media->setDate(new \DateTime());
-        $media->setUrl("https://www.youtube.com/watch?v=N_mwZugEs28");
+        $media->setUrl("N_mwZugEs28");
         $manager->getClassMetaData(get_class($media))->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
         $manager->persist($media);
         $manager->flush();
@@ -96,7 +96,7 @@ class LoadMediaData implements FixtureInterface, OrderedFixtureInterface
         $media->setPlaylist($playlist);
         $media->setTitre("Rodrigo Amarante - Tuyo");
         $media->setDate(new \DateTime());
-        $media->setUrl("https://www.youtube.com/watch?v=Y2E8mM3o6iA");
+        $media->setUrl("Y2E8mM3o6iA");
         $manager->getClassMetaData(get_class($media))->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
         $manager->persist($media);
         $manager->flush();
@@ -106,7 +106,7 @@ class LoadMediaData implements FixtureInterface, OrderedFixtureInterface
         $media->setPlaylist($playlist);
         $media->setTitre("Datarock - Fa Fa Fa");
         $media->setDate(new \DateTime());
-        $media->setUrl("https://www.youtube.com/watch?v=N6xoFhkthls");
+        $media->setUrl("N6xoFhkthls");
         $manager->getClassMetaData(get_class($media))->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
         $manager->persist($media);
         $manager->flush();
@@ -116,7 +116,7 @@ class LoadMediaData implements FixtureInterface, OrderedFixtureInterface
         $media->setPlaylist($playlist);
         $media->setTitre("Robert Miles - Children");
         $media->setDate(new \DateTime());
-        $media->setUrl("https://www.youtube.com/watch?v=CC5ca6Hsb2Q");
+        $media->setUrl("CC5ca6Hsb2Q");
         $manager->getClassMetaData(get_class($media))->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
         $manager->persist($media);
         $manager->flush();
@@ -130,7 +130,7 @@ class LoadMediaData implements FixtureInterface, OrderedFixtureInterface
         $media->setPlaylist($playlist);
         $media->setTitre("New Fang");
         $media->setDate(new \DateTime());
-        $media->setUrl("https://www.youtube.com/watch?v=S7_vH3H8LPI");
+        $media->setUrl("S7_vH3H8LPI");
         $manager->getClassMetaData(get_class($media))->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
         $manager->persist($media);
         $manager->flush();
@@ -140,7 +140,7 @@ class LoadMediaData implements FixtureInterface, OrderedFixtureInterface
         $media->setPlaylist($playlist);
         $media->setTitre("Animals As Leaders - CAFO");
         $media->setDate(new \DateTime());
-        $media->setUrl("https://www.youtube.com/watch?v=NmfzWpp0hMc");
+        $media->setUrl("NmfzWpp0hMc");
         $manager->getClassMetaData(get_class($media))->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
         $manager->persist($media);
         $manager->flush();
@@ -150,7 +150,7 @@ class LoadMediaData implements FixtureInterface, OrderedFixtureInterface
         $media->setPlaylist($playlist);
         $media->setTitre("Megadeth - Trust");
         $media->setDate(new \DateTime());
-        $media->setUrl("https://youtu.be/3Ja3CQNyhhw");
+        $media->setUrl("3Ja3CQNyhhw");
         $manager->getClassMetaData(get_class($media))->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
         $manager->persist($media);
         $manager->flush();
@@ -164,7 +164,7 @@ class LoadMediaData implements FixtureInterface, OrderedFixtureInterface
         $media->setPlaylist($playlist);
         $media->setTitre("Ra Ra Riot - Boy");
         $media->setDate(new \DateTime());
-        $media->setUrl("https://www.youtube.com/watch?v=NKGfQCOyCCA");
+        $media->setUrl("NKGfQCOyCCA");
         $manager->getClassMetaData(get_class($media))->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
         $manager->persist($media);
         $manager->flush();
@@ -174,7 +174,7 @@ class LoadMediaData implements FixtureInterface, OrderedFixtureInterface
         $media->setPlaylist($playlist);
         $media->setTitre("Ratatat - Gettysburg");
         $media->setDate(new \DateTime());
-        $media->setUrl("https://www.youtube.com/watch?v=PH_a2OcCmnI&feature=youtu.be");
+        $media->setUrl("PH_a2OcCmnI");
         $manager->getClassMetaData(get_class($media))->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
         $manager->persist($media);
         $manager->flush();
@@ -184,7 +184,7 @@ class LoadMediaData implements FixtureInterface, OrderedFixtureInterface
         $media->setPlaylist($playlist);
         $media->setTitre("Portugal. The Man - Feel It Still");
         $media->setDate(new \DateTime());
-        $media->setUrl("https://www.youtube.com/watch?v=pBkHHoOIIn8");
+        $media->setUrl("pBkHHoOIIn8");
         $manager->getClassMetaData(get_class($media))->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
         $manager->persist($media);
         $manager->flush();

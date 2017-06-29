@@ -41,6 +41,16 @@ class Playlist
     private $theme;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="url", type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Type("string")
+     */
+    private $url;
+
+
+    /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="playlist")
      */
     private $user;
@@ -60,6 +70,16 @@ class Playlist
      */
     private $media;
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->invite = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->likePlaylist = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->media = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
     public function setId($id)
     {
         $this->id = $id;
@@ -68,7 +88,7 @@ class Playlist
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -130,7 +150,7 @@ class Playlist
      *
      * @return Playlist
      */
-    public function setuser(\WCS\putyourzickBundle\Entity\User $user = null)
+    public function setUser(\WCS\putyourzickBundle\Entity\User $user = null)
     {
         $this->user = $user;
 
@@ -142,100 +162,9 @@ class Playlist
      *
      * @return \WCS\putyourzickBundle\Entity\User
      */
-    public function getuser()
+    public function getUser()
     {
         return $this->user;
-    }
-    
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->playlist = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add playlist
-     *
-     * @param \WCS\putyourzickBundle\Entity\Invite $playlist
-     *
-     * @return Playlist
-     */
-    public function addPlaylist(\WCS\putyourzickBundle\Entity\Invite $playlist)
-    {
-        $this->playlist[] = $playlist;
-
-        return $this;
-    }
-
-    /**
-     * Remove playlist
-     *
-     * @param \WCS\putyourzickBundle\Entity\Invite $playlist
-     */
-    public function removePlaylist(\WCS\putyourzickBundle\Entity\Invite $playlist)
-    {
-        $this->playlist->removeElement($playlist);
-    }
-
-    /**
-     * Get playlist
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getplaylist()
-    {
-        return $this->playlist;
-    }
-    
-
-    /**
-     * Set likePlaylist
-     *
-     * @param \WCS\putyourzickBundle\Entity\likePlaylist $likePlaylist
-     *
-     * @return Playlist
-     */
-    public function setlikePlaylist(\WCS\putyourzickBundle\Entity\likePlaylist $likePlaylist = null)
-    {
-        $this->likePlaylist = $likePlaylist;
-
-        return $this;
-    }
-
-    /**
-     * Get likePlaylist
-     *
-     * @return \WCS\putyourzickBundle\Entity\likePlaylist
-     */
-    public function getlikePlaylist()
-    {
-        return $this->likePlaylist;
-    }
-
-    /**
-     * Add likePlaylist
-     *
-     * @param \WCS\putyourzickBundle\Entity\likePlaylist $likePlaylist
-     *
-     * @return Playlist
-     */
-    public function addlikePlaylist(\WCS\putyourzickBundle\Entity\likePlaylist $likePlaylist)
-    {
-        $this->likePlaylist[] = $likePlaylist;
-
-        return $this;
-    }
-
-    /**
-     * Remove likePlaylist
-     *
-     * @param \WCS\putyourzickBundle\Entity\likePlaylist $likePlaylist
-     */
-    public function removelikePlaylist(\WCS\putyourzickBundle\Entity\likePlaylist $likePlaylist)
-    {
-        $this->likePlaylist->removeElement($likePlaylist);
     }
 
     /**
@@ -273,6 +202,40 @@ class Playlist
     }
 
     /**
+     * Add likePlaylist
+     *
+     * @param \WCS\putyourzickBundle\Entity\likePlaylist $likePlaylist
+     *
+     * @return Playlist
+     */
+    public function addLikePlaylist(\WCS\putyourzickBundle\Entity\likePlaylist $likePlaylist)
+    {
+        $this->likePlaylist[] = $likePlaylist;
+
+        return $this;
+    }
+
+    /**
+     * Remove likePlaylist
+     *
+     * @param \WCS\putyourzickBundle\Entity\likePlaylist $likePlaylist
+     */
+    public function removeLikePlaylist(\WCS\putyourzickBundle\Entity\likePlaylist $likePlaylist)
+    {
+        $this->likePlaylist->removeElement($likePlaylist);
+    }
+
+    /**
+     * Get likePlaylist
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getLikePlaylist()
+    {
+        return $this->likePlaylist;
+    }
+
+    /**
      * Add medium
      *
      * @param \WCS\putyourzickBundle\Entity\Media $medium
@@ -304,5 +267,29 @@ class Playlist
     public function getMedia()
     {
         return $this->media;
+    }
+
+    /**
+     * Set url
+     *
+     * @param string $url
+     *
+     * @return Playlist
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+
+        return $this;
+    }
+
+    /**
+     * Get url
+     *
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
     }
 }

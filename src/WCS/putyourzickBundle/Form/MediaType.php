@@ -17,9 +17,6 @@ class MediaType extends AbstractType
         $builder
             ->add('titre')
             ->add('url')
-            ->add('date')
-            ->add('user')
-            ->add('playlist')
             ->add('Ajouter', SubmitType::class);
 
     }
