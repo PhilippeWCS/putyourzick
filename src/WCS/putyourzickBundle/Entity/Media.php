@@ -3,6 +3,8 @@
 namespace WCS\putyourzickBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * Media
@@ -24,7 +26,18 @@ class Media
     /**
      * @var string
      *
+     * @ORM\Column(name="titre", type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Type("string")
+     */
+    private $titre;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="url", type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Type("string")
      */
     private $url;
 
@@ -32,6 +45,8 @@ class Media
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="datetime")
+     * @Assert\NotBlank()
+     * @Assert\Type("dateTime")
      */
     private $date;
 
@@ -235,5 +250,29 @@ class Media
     public function getCommentaire()
     {
         return $this->commentaire;
+    }
+
+    /**
+     * Set titre
+     *
+     * @param string $titre
+     *
+     * @return Media
+     */
+    public function setTitre($titre)
+    {
+        $this->titre = $titre;
+
+        return $this;
+    }
+
+    /**
+     * Get titre
+     *
+     * @return string
+     */
+    public function getTitre()
+    {
+        return $this->titre;
     }
 }

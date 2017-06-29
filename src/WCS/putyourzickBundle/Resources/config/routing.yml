@@ -33,4 +33,20 @@ wcs_sputyourzick_delete_playlist:
     path:     /user/deleteplaylist/{id}
     defaults: { _controller: WCSputyourzickBundle:Playlist:delete }
 
+wcs_sputyourzick_get_media:
+    path:     /getmedia
+    defaults: { _controller: WCSputyourzickBundle:Media:get }
+
+wcs_putyourzick_add_media:
+    path:     /user/addmedia
+    defaults: { _controller: WCSputyourzickBundle:Media:add }
+
+wcs_sputyourzick_edit_media:
+    path:     /user/editmedia/{id}
+    defaults: { _controller: WCSputyourzickBundle:Media:edit }
+
+wcs_sputyourzick_delete_media:
+    path:     /user/deletemedia/{id}
+    defaults: { _controller: WCSputyourzickBundle:Media:delete }
+
 
