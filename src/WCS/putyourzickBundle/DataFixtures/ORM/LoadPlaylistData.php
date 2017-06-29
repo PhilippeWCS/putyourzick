@@ -24,8 +24,8 @@ class LoadPlaylistData implements FixtureInterface, OrderedFixtureInterface
         $playlist = new Playlist();
         $playlist->setId(1);
         $playlist->setUser($user);
-        $playlist->setTitre("Playlist funk");
-        $playlist->setTheme("Funk");
+        $playlist->setTitre("Playlist hip hop");
+        $playlist->setTheme("Hip Hop");
         $manager->getClassMetaData(get_class($playlist))->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
         $manager->persist($playlist);
         $manager->flush();

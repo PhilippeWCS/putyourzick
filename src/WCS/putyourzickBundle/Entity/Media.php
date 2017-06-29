@@ -70,6 +70,11 @@ class Media
      */
     private $commentaire;
 
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
 
     /**
      * Get id
