@@ -11,11 +11,14 @@ class UserController extends Controller
 {
     public function inscriptionAction(Request $request)
     {
+
         $user = new User();
 
-        $plainpassword = $request->get('password');
-        $email = $request->get('email');
-        $username = $request->get('pseudo');
+        $data = json_decode($request->getContent(), true);
+        $plainpassword = $data['password'];
+        $email =  $data['email'];
+        $username =  $data['pseudo'];
+
 
         $user->setPlainPassword($plainpassword);
         $user->setEmail($email);
@@ -27,7 +30,7 @@ class UserController extends Controller
         if (count($errors) > 0) {
             $errorsString = (string) $errors;
 
-            return new JsonResponse($errorsString);
+            return new JsonResponse(array('error' => $errorsString) );
         }
         else{
             $encoder = $this->container->get('security.password_encoder');
@@ -39,7 +42,9 @@ class UserController extends Controller
             $em->persist($user);
             $em->flush();
 
-            return new JsonResponse('success');
+
+
+            return new JsonResponse(['msg' => 'success', 'token' => uniqid()]);
         }
     }
 
