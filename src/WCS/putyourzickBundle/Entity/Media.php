@@ -45,8 +45,6 @@ class Media
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="datetime")
-     * @Assert\NotBlank()
-     * @Assert\Type("dateTime")
      */
     private $date;
 

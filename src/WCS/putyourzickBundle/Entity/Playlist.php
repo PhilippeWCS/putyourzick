@@ -51,7 +51,7 @@ class Playlist
     private $invite;
 
     /**
-     * @ORM\OneToMany(targetEntity="LikePlaylist", mappedBy="playlist")
+     * @ORM\OneToMany(targetEntity="likePlaylist", mappedBy="playlist")
      */
     private $likePlaylist;
 
@@ -124,61 +124,13 @@ class Playlist
     }
 
     /**
-     * Set proprietaire
-     *
-     * @param string $proprietaire
-     *
-     * @return Playlist
-     */
-    public function setProprietaire($proprietaire)
-    {
-        $this->proprietaire = $proprietaire;
-
-        return $this;
-    }
-
-    /**
-     * Get proprietaire
-     *
-     * @return string
-     */
-    public function getProprietaire()
-    {
-        return $this->proprietaire;
-    }
-
-    /**
-     * Set users
-     *
-     * @param \WCS\putyourzickBundle\Entity\User $users
-     *
-     * @return Playlist
-     */
-    public function setUsers(\WCS\putyourzickBundle\Entity\User $users = null)
-    {
-        $this->users = $users;
-
-        return $this;
-    }
-
-    /**
-     * Get users
-     *
-     * @return \WCS\putyourzickBundle\Entity\User
-     */
-    public function getUsers()
-    {
-        return $this->users;
-    }
-
-    /**
      * Set user
      *
      * @param \WCS\putyourzickBundle\Entity\User $user
      *
      * @return Playlist
      */
-    public function setUser(\WCS\putyourzickBundle\Entity\User $user = null)
+    public function setuser(\WCS\putyourzickBundle\Entity\User $user = null)
     {
         $this->user = $user;
 
@@ -190,10 +142,11 @@ class Playlist
      *
      * @return \WCS\putyourzickBundle\Entity\User
      */
-    public function getUser()
+    public function getuser()
     {
         return $this->user;
     }
+    
     /**
      * Constructor
      */
@@ -231,67 +184,58 @@ class Playlist
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getPlaylist()
+    public function getplaylist()
     {
         return $this->playlist;
     }
+    
 
     /**
-     * Get playlists
+     * Set likePlaylist
      *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getPlaylists()
-    {
-        return $this->playlists;
-    }
-
-    /**
-     * Set likeplaylist
-     *
-     * @param \WCS\putyourzickBundle\Entity\LikePlaylist $likeplaylist
+     * @param \WCS\putyourzickBundle\Entity\likePlaylist $likePlaylist
      *
      * @return Playlist
      */
-    public function setLikeplaylist(\WCS\putyourzickBundle\Entity\LikePlaylist $likeplaylist = null)
+    public function setlikePlaylist(\WCS\putyourzickBundle\Entity\likePlaylist $likePlaylist = null)
     {
-        $this->likeplaylist = $likeplaylist;
+        $this->likePlaylist = $likePlaylist;
 
         return $this;
     }
 
     /**
-     * Get likeplaylist
+     * Get likePlaylist
      *
-     * @return \WCS\putyourzickBundle\Entity\LikePlaylist
+     * @return \WCS\putyourzickBundle\Entity\likePlaylist
      */
-    public function getLikeplaylist()
+    public function getlikePlaylist()
     {
-        return $this->likeplaylist;
+        return $this->likePlaylist;
     }
 
     /**
-     * Add likeplaylist
+     * Add likePlaylist
      *
-     * @param \WCS\putyourzickBundle\Entity\LikePlaylist $likeplaylist
+     * @param \WCS\putyourzickBundle\Entity\likePlaylist $likePlaylist
      *
      * @return Playlist
      */
-    public function addLikeplaylist(\WCS\putyourzickBundle\Entity\LikePlaylist $likeplaylist)
+    public function addlikePlaylist(\WCS\putyourzickBundle\Entity\likePlaylist $likePlaylist)
     {
-        $this->likeplaylist[] = $likeplaylist;
+        $this->likePlaylist[] = $likePlaylist;
 
         return $this;
     }
 
     /**
-     * Remove likeplaylist
+     * Remove likePlaylist
      *
-     * @param \WCS\putyourzickBundle\Entity\LikePlaylist $likeplaylist
+     * @param \WCS\putyourzickBundle\Entity\likePlaylist $likePlaylist
      */
-    public function removeLikeplaylist(\WCS\putyourzickBundle\Entity\LikePlaylist $likeplaylist)
+    public function removelikePlaylist(\WCS\putyourzickBundle\Entity\likePlaylist $likePlaylist)
     {
-        $this->likeplaylist->removeElement($likeplaylist);
+        $this->likePlaylist->removeElement($likePlaylist);
     }
 
     /**

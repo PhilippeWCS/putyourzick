@@ -5,21 +5,34 @@ namespace WCS\putyourzickBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use WCS\putyourzickBundle\Entity\Media;
-use WCS\putyourzickBundle\Entity\Playlist;
 use WCS\putyourzickBundle\Form\MediaType;
-use WCS\putyourzickBundle\Form\PlaylistType;
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
 class MediaController extends Controller
 {
     public function getAction()
     {
+        $encoders = array(new XmlEncoder(), new JsonEncoder());
+        $normalizer = new ObjectNormalizer();
+        $normalizer->setCircularReferenceLimit(1);
+        $normalizer->setCircularReferenceHandler(function ($object) {
+            return $object->getId(); });
+        $normalizers = array($normalizer);
+        $serializer = new Serializer($normalizers, $encoders);
+
         $em = $this->getDoctrine()->getManager();
         $media = $em
             ->getRepository('WCSputyourzickBundle:Media')
             ->findAll();
 
-        return new JsonResponse('success');
+    $patate = $serializer->serialize($media, 'json');
+
+        return new Response($patate);
     }
 
     public function addAction(Request $request)
