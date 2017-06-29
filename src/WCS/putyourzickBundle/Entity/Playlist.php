@@ -60,6 +60,11 @@ class Playlist
      */
     private $media;
 
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
     /**
      * Get id
      *
